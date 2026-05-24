@@ -1,0 +1,109 @@
+
+/* --- CHAT AND INVIS ADDITIONS --- */
+
+.hud-invis {
+    position: absolute;
+    bottom: 80px;
+    right: 20px;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.chat-content {
+    display: flex;
+    flex-direction: column;
+    height: 80vh !important;
+}
+
+.chat-messages {
+    flex: 1;
+    overflow-y: auto;
+    margin-bottom: 10px;
+    padding-right: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.chat-msg {
+    background: #222;
+    padding: 10px;
+    border-radius: 8px;
+    border-left: 3px solid var(--primary-color);
+    font-family: 'Inter', sans-serif; /* Chat needs readable font */
+    font-size: 0.9rem;
+    word-break: break-word;
+}
+
+.chat-msg.my-msg {
+    align-self: flex-end;
+    background: #333;
+    border-left: none;
+    border-right: 3px solid var(--success-color);
+}
+
+.msg-author {
+    font-size: 0.7rem;
+    color: var(--primary-color);
+    margin-bottom: 5px;
+    font-family: var(--font-pixel);
+}
+
+.my-msg .msg-author {
+    text-align: right;
+    color: var(--success-color);
+}
+
+.msg-text {
+    margin-bottom: 5px;
+}
+
+.msg-img {
+    max-width: 100%;
+    border-radius: 8px;
+    margin-bottom: 5px;
+}
+
+.msg-audio {
+    width: 100%;
+    height: 30px;
+    margin-bottom: 5px;
+}
+
+.msg-time {
+    font-size: 0.6rem;
+    color: #666;
+    text-align: right;
+    font-family: 'Inter', sans-serif;
+}
+
+.chat-input-area {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.chat-file-btn {
+    background: #333;
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#chatInput {
+    flex: 1;
+    border-radius: 8px;
+    padding: 10px;
+    font-family: 'Inter', sans-serif;
+    border: 1px solid #444;
+    background: #222;
+    color: #fff;
+    outline: none;
+}
+#chatInput:focus {
+    border-color: var(--primary-color);
+}

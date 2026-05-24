@@ -1,0 +1,362 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+:root {
+  --bg-color: #000000;
+  --panel-bg: #111111;
+  --primary-color: #FFD700;
+  --primary-dark: #ccaa00;
+  --text-color: #ffffff;
+  --text-muted: #aaaaaa;
+  --danger-color: #ff3333;
+  --success-color: #33ff33;
+  --border-thick: 4px;
+  
+  --font-pixel: 'Press Start 2P', cursive;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-pixel);
+  -webkit-tap-highlight-color: transparent;
+  image-rendering: pixelated;
+}
+
+body, html {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  overscroll-behavior-y: none;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+/* =========================================
+   AUTH SCREENS
+   ========================================= */
+.auth-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  background: var(--bg-color);
+  background-image: 
+    linear-gradient(45deg, #111 25%, transparent 25%, transparent 75%, #111 75%, #111),
+    linear-gradient(45deg, #111 25%, transparent 25%, transparent 75%, #111 75%, #111);
+  background-size: 20px 20px;
+  background-position: 0 0, 10px 10px;
+}
+
+h1.logo {
+  color: var(--primary-color);
+  font-size: 2rem;
+  margin-bottom: 30px;
+  text-transform: uppercase;
+  text-shadow: 4px 4px 0px var(--primary-dark);
+  text-align: center;
+}
+
+.auth-box {
+  width: 100%;
+  max-width: 400px;
+  background: var(--bg-color);
+  border: var(--border-thick) solid var(--primary-color);
+  padding: 20px;
+  box-shadow: 8px 8px 0px var(--primary-dark);
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 0.8rem;
+  color: var(--primary-color);
+}
+
+input[type="text"],
+input[type="tel"],
+input[type="password"] {
+  width: 100%;
+  padding: 15px;
+  background-color: #000;
+  border: 2px solid var(--primary-color);
+  color: var(--text-color);
+  outline: none;
+  font-size: 0.9rem;
+}
+
+input:focus {
+  background-color: #222;
+}
+
+.btn {
+  width: 100%;
+  padding: 15px;
+  background: var(--primary-color);
+  color: #000;
+  border: 2px solid #fff;
+  font-size: 0.9rem;
+  cursor: pointer;
+  text-transform: uppercase;
+  margin-top: 10px;
+  box-shadow: inset -4px -4px 0px rgba(0,0,0,0.2);
+}
+
+.btn:active {
+  box-shadow: inset 4px 4px 0px rgba(0,0,0,0.2);
+}
+
+.btn-secondary {
+  background: #333;
+  color: #fff;
+}
+
+.btn-danger {
+  background: var(--danger-color);
+  color: #fff;
+  border-color: #fff;
+}
+
+.auth-switch {
+  text-align: center;
+  margin-top: 25px;
+}
+
+.auth-switch a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.7rem;
+}
+.auth-switch a:hover {
+  color: var(--primary-color);
+}
+
+/* =========================================
+   GAME APP (FULLSCREEN)
+   ========================================= */
+.app-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+}
+
+#mapContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background-color: #222;
+  /* Dark mode hack for map */
+  filter: invert(1) hue-rotate(180deg) brightness(0.8) contrast(1.2);
+}
+
+/* Fix FloorControl invert */
+.mapgl-floorControl {
+    filter: invert(1) hue-rotate(180deg);
+}
+
+/* 2GIS Marker and Click fixes */
+.nav-item * { pointer-events: none; }
+.custom-marker { 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center; 
+    font-size: 20px; 
+    text-shadow: 2px 2px 0px #000; 
+    pointer-events: none; 
+    /* Counter-invert map filter */
+    filter: invert(1) hue-rotate(180deg);
+    transition: transform 1s ease-in-out;
+}
+.marker-name { font-size: 8px; background: rgba(0,0,0,0.8); color: #fff; padding: 2px 4px; border: 1px solid var(--primary-color); border-radius: 4px; margin-bottom: 2px; white-space: nowrap; font-family: var(--font-pixel); }
+.leaflet-control-attribution { display: none !important; }
+
+/* Pixel HUD (Top) */
+.hud-top {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 95%;
+  max-width: 450px;
+  background: var(--bg-color);
+  border: var(--border-thick) solid var(--primary-color);
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 10;
+  box-shadow: 4px 4px 0px var(--primary-dark);
+}
+
+.hud-role {
+  color: var(--text-color);
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.hud-coins {
+  color: var(--primary-color);
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.game-status {
+  position: absolute;
+  top: 70px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  background: var(--danger-color);
+  color: #fff;
+  padding: 10px;
+  border: 2px solid #fff;
+  font-size: 0.7rem;
+  text-align: center;
+  box-shadow: 4px 4px 0px #000;
+}
+.game-status.active { display: none; }
+
+/* Bottom Navigation Bar */
+.bottom-nav {
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 95%;
+  max-width: 450px;
+  background: var(--bg-color);
+  border: var(--border-thick) solid var(--primary-color);
+  padding: 5px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 99999; /* Fix clickability over map */
+  box-shadow: 4px 4px 0px var(--primary-dark);
+}
+
+.nav-item {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  padding: 10px 5px;
+  width: 30%;
+  pointer-events: auto; /* Fix clickability */
+}
+
+.nav-item:active {
+  background: #222;
+}
+
+.nav-item.highlight {
+  color: var(--primary-color);
+}
+
+.nav-item * { pointer-events: none; } /* Child elements shouldn't steal clicks */
+
+.nav-icon {
+  width: 24px;
+  height: 24px;
+  fill: currentColor;
+}
+.nav-text {
+  font-size: 0.6rem;
+}
+
+/* =========================================
+   MODALS (Store, Profile, Inventory)
+   ========================================= */
+.modal {
+  display: none; 
+  position: fixed; 
+  z-index: 999999; /* Above everything */
+  left: 0; 
+  top: 0; 
+  width: 100%; 
+  height: 100%; 
+  background-color: rgba(0,0,0,0.8); 
+  backdrop-filter: blur(5px);
+}
+
+.modal.anim-fade {
+    animation: fadeIn 0.3s ease;
+}
+
+.modal-content {
+  background: var(--bg-color);
+  border: var(--border-thick) solid var(--primary-color);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  max-width: 400px;
+  padding: 20px;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 8px 8px 0px var(--primary-dark);
+}
+
+.slide-up {
+    animation: slideUp 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from { transform: translate(-50%, 100%); opacity: 0; }
+    to { transform: translate(-50%, -50%); opacity: 1; }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); box-shadow: 0 0 15px rgba(255,51,51,0.5); }
+    50% { transform: scale(1.05); box-shadow: 0 0 25px rgba(255,51,51,0.8); }
+    100% { transform: scale(1); box-shadow: 0 0 15px rgba(255,51,51,0.5); }
+}
+
+.pulse-anim {
+    animation: pulse 2s infinite;
+}
+
+/* Карманный режим */
+#pocketModeOverlay {
+  display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+  background-color: #000; z-index: 9999999; justify-content: center; align-items: center; flex-direction: column;
+  opacity: 0; transition: opacity 0.8s ease-in-out;
+}
+#pocketModeOverlay.active { display: flex; opacity: 1; }
+#pocketModeOverlay p { color: #111; margin-bottom: 40px; font-size: 0.8rem; text-align: center; padding: 0 20px; line-height: 2; user-select: none; }
+.unlock-btn { padding: 40px 40px; background: transparent; border: none; color: transparent; font-size: 0.9rem; cursor: pointer; position: absolute; width: 100%; height: 100%; }
+
+/* Toasts */
+.toast {
+  visibility: hidden; min-width: 250px;
+  background: var(--primary-color);
+  color: #000; text-align: center; padding: 15px;
+  position: fixed; z-index: 10000; left: 50%; transform: translateX(-50%); top: 10px;
+  border: 4px solid #fff; font-size: 0.7rem; line-height: 1.5;
+}
+.toast.show { visibility: visible; }
